@@ -1,0 +1,33 @@
+{% extends"layout.html" %}
+<!--layout.htmlを適用-->
+{% block body %}
+<form action="{{url_for('entry.add_entry')}}" method=post class=add-entry>
+    <div class="from-group">
+        <label for="InputTitle">タイトル</label>
+        <input type="text" class="form-control" id="InputTitle" name="title">
+    </div>
+
+    <div class="from-group">
+        <label for="InputText">本文</label>
+        <textarea class="form-control" id="InputText" name="text" rows="3"></textarea>
+    </div>
+
+    <div class="from-group">
+        <label for="InputCategory">カテゴリー</label>
+            <select class="form-control" id="InputCategory" name="category">
+                <option value="AI">AI</option>
+                <option value="機械学習">機械学習・ディープラーニング</option>
+                <option value="研究・応用実例">研究・応用実例</option>
+                <option value="社会・法律">社会・法律</option>
+                </select>
+    </div>
+
+    <div class="from-group">
+        <label for="InputInitial">頭文字（全角）</label>
+        <input type="text" class="form-control" id="InputInitial" name="initial">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">作成</button>
+</form>
+{% endblock %}
+<!--layout.htmlとはことなる部分の編集-->

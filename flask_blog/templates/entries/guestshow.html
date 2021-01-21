@@ -1,0 +1,33 @@
+{% extends"layout.html" %}
+<!--layout.htmlを適用-->
+{% block body %}
+
+<!--引き渡されたid内の記事を出力-->
+<h2>
+    {{ entry.title }}
+
+</h2>
+<br>
+
+{{ entry.text }}
+
+<br>
+<br>
+{{ entry.category }}
+<br>
+<br>
+投稿日時{{ entry.created_at }}
+<br>
+<br>
+ <div class="btn-group">
+　<!--記事の編集(もどるボタン)-->
+  <form action="{{ url_for('entry.show_guest_entries') }}" method="GET">
+       <!--edit_entryにidの引数を渡し、戻り値を取得-->
+    <button type="submit" class="btn btn-secondary">
+        もどる
+    </button>
+  </form>
+ </div>
+
+{% endblock %}
+<!--layout.htmlとはことなる部分の編集-->

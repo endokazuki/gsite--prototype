@@ -1,0 +1,20 @@
+{% extends"layout.html" %}
+<!--layout.htmlを適用-->
+{% block body %}
+<p>全ての一括更新を行いますか？</p>
+<div class="btn-group">
+<form action="{{ url_for('entry.new_entry') }}" method="GET">
+    <!--edit_entryにidの引数を渡し、戻り値を送信-->
+ <button type="submit" class="btn btn-danger" style="margin-left:5px">
+     はい
+ </button>
+</form>
+<form action="{{ url_for('entry.new_entry') }}" method="GET">
+    <!--edit_entryにidの引数を渡し、戻り値を取得-->
+ <button type="submit" class="btn btn-secondary" style="margin-left:5px">
+     いいえ
+ </button>
+</form>
+</div>
+{% endblock %}
+<!--layout.htmlとはことなる部分の編集-->

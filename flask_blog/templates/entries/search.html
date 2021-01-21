@@ -1,0 +1,505 @@
+{% extends"layout.html" %}
+<!--layout.htmlを適用-->
+{% block body %}
+<p>用語検索</p>
+<div class="btn-group border border-primary"　style="display:inline-block; width:70em; height: 100px;">
+  
+   　<!--記事の検索(検索ボタン)-->
+      <form action="{{ url_for('entry.searchresult') }}" method="POST">
+        <p>SEARCH：<input type="text" name="title" size="30" required></p>
+        <!--入力を必須項目にするためrequiredを設定する-->
+        <button type="submit" class="btn btn-primary">
+        検索
+        </button>
+      </form>
+</div>
+<p>関連用語検索</p>
+<div class="btn-group border border-warning"　style="display:inline-block; width:70em; height: 100px;">
+  
+  <br>
+   　<!--記事の検索(検索ボタン)-->
+      <form action="{{ url_for('entry.searchtext_result') }}" method="POST">
+        <p>SEARCH：<input type="text" name="text" size="30" required></p>
+        <!--入力を必須項目にするためrequiredを設定する-->
+        <button type="submit" class="btn btn-warning">
+        検索
+        </button>
+      </form>
+  
+</div>
+<br>
+<br>
+<p>分類検索</p>
+<div class="btn-group border border-success" style="display:inline-block; width:66em; height: 70px;">
+  
+  <form action="{{ url_for('entry.searchcategory_result') }}" method="POST">
+
+    <div style="display:inline-block; width:300px;">
+      <button type="submit" class="btn btn-success" id="c1" name="category" value="AI">
+      AI(歴史・定理・課題)
+      <!--valueはAIのままに維持-->
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:300px;">
+      <button type="submit" class="btn btn-success" id="c1" name="category" value="機械学習・ディープラーニング">
+        機械学習・ディープラーニング
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:200px;">
+      <button type="submit" class="btn btn-success" id="c1" name="category" value="研究・応用実例">
+        研究・応用実例
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:200px;">
+      <button type="submit" class="btn btn-success" id="c1" name="category" value="社会・法律">
+        社会・法律
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<br>
+<br>
+<p>索引検索</p>
+<div class="btn-group border border-danger " style="display:inline-block; width:66em; height: 450px;">
+  
+  <form action="{{ url_for('entry.searchinitial_result') }}" method="POST">
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i1" name="initial" value="ア">
+      ア
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i2" name="initial" value="イ">
+      イ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i3" name="initial" value="ウ">
+      ウ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i4" name="initial" value="エ">
+      エ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i5" name="initial" value="オ">
+      オ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i6" name="initial" value="カ">
+      カ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i7" name="initial" value="キ">
+      キ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i8" name="initial" value="ク">
+      ク
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i9" name="initial" value="ケ">
+      ケ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i10" name="initial" value="コ">
+      コ
+      </button>
+    </div>
+    <br>
+    <br>
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i11" name="initial" value="サ">
+      サ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i12" name="initial" value="シ">
+      シ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i13" name="initial" value="ス">
+      ス
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i14" name="initial" value="セ">
+      セ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i15" name="initial" value="ソ">
+      ソ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i16" name="initial" value="タ">
+      タ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i17" name="initial" value="チ">
+      チ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i18" name="initial" value="ツ">
+      ツ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i19" name="initial" value="テ">
+      テ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i20" name="initial" value="ト">
+      ト
+      </button>
+    </div>
+    <br>
+    <br>
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i21" name="initial" value="ナ">
+      ナ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i22" name="initial" value="ニ">
+      ニ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i23" name="initial" value="ヌ">
+      ヌ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i24" name="initial" value="ネ">
+      ネ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i25" name="initial" value="ノ">
+      ノ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i26" name="initial" value="ハ">
+      ハ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i27" name="initial" value="ヒ">
+      ヒ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i28" name="initial" value="フ">
+      フ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i29" name="initial" value="ヘ">
+      ヘ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i30" name="initial" value="ホ">
+      ホ
+      </button>
+    </div>
+    <br>
+    <br>
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i41" name="initial" value="マ">
+      マ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i42" name="initial" value="ミ">
+      ミ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i43" name="initial" value="ム">
+      ム
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i44" name="initial" value="メ">
+      メ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i45" name="initial" value="モ">
+      モ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i46" name="initial" value="ヤ">
+      ヤ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i47" name="initial" value="ユ">
+      ユ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i48" name="initial" value="ヨ">
+      ヨ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i49" name="initial" value="ラ">
+      ラ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i50" name="initial" value="リ">
+      リ
+      </button>
+    </div>
+    <br>
+    <br>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i51" name="initial" value="ル">
+      ル
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i52" name="initial" value="レ">
+      レ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i53" name="initial" value="ロ">
+      ロ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i54" name="initial" value="ワ">
+      ワ
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i55" name="initial" value="A">
+      A
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i56" name="initial" value="B">
+      B
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i57" name="initial" value="C">
+      C
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i58" name="initial" value="D">
+      D
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i59" name="initial" value="E">
+      E
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i60" name="initial" value="F">
+      F
+      </button>
+    </div>
+    <br>
+    <br>
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i61" name="initial" value="G">
+      G
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i62" name="initial" value="H">
+      H
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i63" name="initial" value="I">
+      I
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i64" name="initial" value="J">
+      J
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i65" name="initial" value="K">
+      K
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i66" name="initial" value="L">
+      L
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i67" name="initial" value="M">
+      M
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i68" name="initial" value="N">
+      N
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i69" name="initial" value="O">
+      O
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i70" name="initial" value="P">
+      P
+      </button>
+    </div>
+    <br>
+    <br>
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i71" name="initial" value="Q">
+      Q
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i72" name="initial" value="R">
+      R
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i73" name="initial" value="S">
+      S
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i74" name="initial" value="T">
+      T
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i75" name="initial" value="U">
+      U
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i76" name="initial" value="V">
+      V
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i77" name="initial" value="W">
+      W
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i78" name="initial" value="X">
+      X
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i79" name="initial" value="Y">
+      Y
+      </button>
+    </div>
+
+    <div style="display:inline-block; width:100px;">
+      <button type="submit" class="btn btn-danger" id="i80" name="initial" value="Z">
+      Z
+      </button>
+    </div>
+  </form>
+
+  
+</div>
+
+{% endblock %}
+<!--layout.htmlとはことなる部分の編集-->
+

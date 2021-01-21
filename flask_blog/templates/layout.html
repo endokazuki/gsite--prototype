@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{url_for('static',filename='favicon.ico')}}">
+    <!--ファビコンの適用-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G検定対策辞書</title>
+</head>
+<body>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--bootstrapの参照（インポート）-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--JavaScriptプラグインの埋め込み-->
+    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" type="text/css">
+    <!--googleのフォントの呼び出し-->
+    <link href="{{url_for('static',filename='style.css')}}" rel=stylesheet>
+    <!--外部CSSの適用-->
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{url_for('entry.show_entries')}}">メニュー</a>
+        <button class="navber-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--ナビゲーションバーの追加-->
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav navbar-nav navbar-right">
+                {% if not session.logged_in %}
+                <!--sessionがない時、ログインボタンを表示-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('view.guestlogin')}}">ユーザ</a>
+                    <!--ユーザログインページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('view.login')}}">管理者</a>
+                    <!--管理者ログインページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('infomation.showall_infomation')}}">コンタクト</a>
+                    <!--管理者ログインページに移行-->
+                </li>
+                {% else %} 
+                {% if val == "manage"%} 
+                <!--sessionがある時、ログアウトボタンを表示-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('entry.show_entries')}}">一覧</a>
+                    <!--投稿ページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('entry.new_entry')}}">新規投稿</a>
+                    <!--投稿ページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('entry.searchmanage')}}">管理者検索</a>
+                    <!--投稿ページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('view.logout')}}">ログアウト</a>
+                    <!--ログアウトページに移行-->
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('entry.show_guest_entries')}}">一覧</a>
+                    <!--検索ページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('entry.search')}}">検索</a>
+                    <!--検索ページに移行-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('view.logout')}}">ログアウト</a>
+                    <!--ログアウトページに移行-->
+                </li>
+                {% endif %}
+                {% endif %}
+            </ul>
+            <!--ナビゲーションバーの項目の指定-->
+        </div>
+    </nav>
+     <!--ナビゲーションウィンドウの追加-->
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" role="alert">
+    {{message}}
+    </div>
+    {% endfor %}
+    <!--flashのメッセージを出力-->
+
+    <div class="blog-body">
+     {% block body %} テンプレートの変化させる部分{% endblock %}
+    </div>
+    <!--解説-->
+
+</div>
+<!--bootstrapの適用-->
+</body>
+</html>

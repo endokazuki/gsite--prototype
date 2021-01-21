@@ -1,0 +1,27 @@
+{% extends"layout.html" %}
+<!--layout.htmlを適用-->
+{% block body %}
+<ul class="list-group list-group-flush ">
+
+{% for entry in entries %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">
+            {{ entry.title }}
+            <!--記事のタイトルの表示-->
+        </h4>
+        <h5> {{ entry.text | truncate(190)}}
+            <!--記事の内容を一部表示-->
+        </h5>
+        <a href="{{ url_for('entry.guestshow_entry',id=entry.id) }}" class="card-link">
+        <!--show_entryにidの引数を渡す-->
+            詳細を見る
+        </a>
+    </div>
+</div>
+{% else %}
+ 投稿がありません
+{% endfor %}
+</ul>
+{% endblock %}
+<!--layout.htmlとはことなる部分の編集-->

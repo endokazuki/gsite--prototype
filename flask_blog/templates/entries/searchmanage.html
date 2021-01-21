@@ -1,0 +1,14 @@
+{% extends"layout.html" %}
+<!--layout.htmlを適用-->
+{% block body %}
+<div class="btn-group">
+    　<!--記事の検索(検索ボタン)-->
+      <form action="{{ url_for('entry.searchmanageresult') }}" method="POST">
+        <p>SEARCH：<input type="text" name="title" size="30"></p>
+        <button type="submit" class="btn btn-secondary">
+        検索
+        </button>
+      </form>
+     </div>
+{% endblock %}
+<!--layout.htmlとはことなる部分の編集-->
